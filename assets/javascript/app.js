@@ -3,6 +3,7 @@ $( document ).ready(function() {
 $("#startButton").on("click", game)
 
 
+// This object's format makes it easy to display to the screen
 var triviaQuestions = {
     "question1":"thing1",
     "question2":"thing2",
@@ -16,10 +17,91 @@ var triviaQuestions = {
     "question10":"thing10",
 }
 
+// Multiple choice selections should be objects for adding to the DOM
+var trivQuesAnswers1 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers2 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers3 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers4 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers5 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers6 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers7 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers8 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers9 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
+var trivQuesAnswers10 = {
+    "answer1":"ansmwer1",
+    "answer2":"ansmwer2",
+    "answer3":"ansmwer3",
+    "answer4":"ansmwer4",
+}
+
 
 function game () {
+// Tracking the correct, incorrect and unanswered questions to show the player at end game
+    var answeredCorrect = 0;
+
+    var answeredIncorrect = 0;
+
+    var answeredFalse = 10;
+
+
 // Hide the start button from the screen
     $("#buttonHide").html("");
+
+
 // Make a giant title display at the header of the page
     $("#triviaTitle").html("<h1>Super Duper Trivia Game</h1>");
 
@@ -28,11 +110,30 @@ function game () {
     // The timer between rounds should be 2 minutes, then the game ends
     var gameTimer = setTimeout(endGame, 120 * 1000);
 
+//     <form >
+// <input type="radio" name="choice" value="Scripting"> Scripting
+// <input type="radio" name="choice" value="Programming"> Programming
+// <input type="radio" name="choice" value="Application"> Application
+// <input type="radio" name="choice" value="None of These"> None of These
+// </form>
+
+// for (choiceNum = 1; choiceNum <= 4; choiceNum++) {
+//     ques1Choices.append(`<input type="radio" name="choice" value="` + )
+// }
+
 
     // Add the trivia questions
     var question1 = $("<p>");
     question1.attr("id", "question1");
     question1.text(triviaQuestions.question1)
+
+    var ques1Choices = $("<form>");
+    //ques1Choices.attr("id", "ques1Choices");
+    // Object.values(trivQuesAnswers1).forEach(function(choice) {
+    //     ques1Choices.append(`<input type="radio" name="choice" value="` + choice + `"> ` + choice)
+    // });
+    console.log(Object.values(trivQuesAnswers1))
+    console.log(ques1Choices)
 
     var question2 = $("<p>");
     question2.attr("id", "question2");
@@ -77,10 +178,11 @@ Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
 
 
 
-// Create a button for finishing the game, titles 'Done'
+// Create a button for finishing the game to allow players to finish early
     var doneButton = $("<button>");
     doneButton.text("Done");
     doneButton.attr("id", "doneButton");
+    $("#pageFooter").append(doneButton)
     $("#doneButton").on("click", endGame)
 }
 
