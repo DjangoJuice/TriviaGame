@@ -2,19 +2,18 @@
 $( document ).ready(function() {
 $("#startButton").on("click", game)
 
-var questionNum = [];
 
 var triviaQuestions = {
-    "one":"thing",
-    "two":"thing",
-    "three":"thing",
-    "four":"thing",
-    "five":"thing",
-    "six":"thing",
-    "seven":"thing",
-    "eight":"thing",
-    "nine":"thing",
-    "ten":"thing",
+    "question1":"thing1",
+    "question2":"thing2",
+    "question3":"thing3",
+    "question4":"thing4",
+    "question5":"thing5",
+    "question6":"thing6",
+    "question7":"thing7",
+    "question8":"thing8",
+    "question9":"thing9",
+    "question10":"thing10",
 }
 
 
@@ -33,50 +32,48 @@ function game () {
     // Add the trivia questions
     var question1 = $("<p>");
     question1.attr("id", "question1");
-    question1.text(triviaQuestions.one)
+    question1.text(triviaQuestions.question1)
 
     var question2 = $("<p>");
     question2.attr("id", "question2");
-    question2.text(triviaQuestions.two)
+    question2.text(triviaQuestions.question2)
 
     var question3 = $("<p>");
     question3.attr("id", "question3");
-    question3.text(triviaQuestions.three)
+    question3.text(triviaQuestions.question3)
 
     var question4 = $("<p>");
     question4.attr("id", "question4");
-    question4.text(triviaQuestions.four)
+    question4.text(triviaQuestions.question4)
 
     var question5 = $("<p>");
     question5.attr("id", "question5");
-    question5.text(triviaQuestions.five)
+    question5.text(triviaQuestions.question5)
 
     var question6 = $("<p>");
     question6.attr("id", "question6");
-    question6.text(triviaQuestions.six)
+    question6.text(triviaQuestions.question6)
 
     var question7 = $("<p>");
     question7.attr("id", "question7");
-    question7.text(triviaQuestions.seven)
+    question7.text(triviaQuestions.question7)
 
     var question8 = $("<p>");
     question8.attr("id", "question8");
-    question8.text(triviaQuestions.eight)
+    question8.text(triviaQuestions.question8)
 
     var question9 = $("<p>");
     question9.attr("id", "question9");
-    question9.text(triviaQuestions.nine)
+    question9.text(triviaQuestions.question9)
 
     var question10 = $("<p>");
     question10.attr("id", "question10");
-    question10.text(triviaQuestions.ten)
+    question10.text(triviaQuestions.question10)
 
 
-// Append the questions to the section div, #questionSection
-for (a = 1; a <= 10; a++) {
-    questionNum.push("question" + a);
-    $("#questionSection").append(eval(questionNum[a-1]))
-};
+Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
+    $("#questionSection").append(eval(trivQuesKey))
+})
 
 
 
