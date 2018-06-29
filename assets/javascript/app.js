@@ -5,7 +5,7 @@ $( document ).ready(function() {
     
     // This object's format makes it easy to display to the screen
     var triviaQuestions = {
-        "question1":"This is Question 1",
+        "question1":"To live is to suffer, to survive is to find some meaning in the suffering.",
         "question2":"This is Question 2",
         "question3":"This is Question 3",
         "question4":"This is Question 4",
@@ -19,10 +19,10 @@ $( document ).ready(function() {
     
     // Multiple choice selections should be objects for adding to the DOM
     var trivQuesAnswers1 = {
-        "answer1":"Q1 A1",
-        "answer2":"Q1 A2",
-        "answer3":"Q1 A3",
-        "answer4":"Q1 A4",
+        "answer1":"Friedrich Nietzsche",
+        "answer2":"Aristotle",
+        "answer3":"Nelson Mandela",
+        "answer4":"Alexander the Great",
     }
     
     var trivQuesAnswers2 = {
@@ -87,6 +87,20 @@ $( document ).ready(function() {
         "answer3":"Q10 A3",
         "answer4":"Q10 A4",
     }
+
+
+    // Game state for ending the game, either by timer or button
+    var endGameStatus = false;
+
+
+    // When the game starts, question(s) will appear, and the timer should begin
+        // The timer between rounds should be 2 minutes, then the game ends
+        var gameTimeout = setTimeout(endGame, 120 * 1000);
+
+
+        // The game should last 2 minutes (120 seconds)
+        var remainingTime = 120;
+    
     
     function game () {
     // Tracking the correct, incorrect and unanswered questions to show the player at end game
@@ -95,7 +109,8 @@ $( document ).ready(function() {
         var answeredIncorrect = 0;
     
         var answeredFalse = 10;
-    
+
+
     
     // Hide the start button from the screen
         $("#buttonHide").html("");
@@ -105,20 +120,14 @@ $( document ).ready(function() {
         $("#triviaTitle").html("<h1>Super Trivia Game</h1>");
     
     
-    // When the game starts, question(s) will appear, and the timer should begin
-        // The timer between rounds should be 2 minutes, then the game ends
-        var gameTimeout = setTimeout(endGame, 120 * 1000);
-
-
-        // The game should last 2 minutes (120 seconds)
-        var remainingTime = 120;
-
-
+    
         // Decrease the timer for the game 
         var intervalId = setInterval(function() {
-            remainingTime--;
-            // Show the remaining time to the player
-            $("#timerDisplay").html("Remaining Time: " + remainingTime);
+            if (remainingTime >= 1 && endGameStatus === false) {
+                remainingTime--;
+                // Show the remaining time to the player
+                $("#timerDisplay").html("Remaining Time: " + remainingTime);
+            };
         }, 1000);
     
     
@@ -162,7 +171,7 @@ $( document ).ready(function() {
         var question10 = $("<p>");
         question10.attr("id", "question10");
         question10.text(triviaQuestions.question10)
-    
+
     
     // All the questions & choices should programmatically display for the player
         //Pull each one from the object of Trivia Questions
@@ -171,6 +180,7 @@ $( document ).ready(function() {
             var quesChoices = $("<form>");
             quesChoices.attr("id", "choices-" + trivQuesKey);
             // Display the radio buttons with answers directly below the question
+                // Only allow the player to choose one answer per question
             Object.values(trivQuesAnswers1).forEach(function(choice) {
                 quesChoices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
             });
@@ -192,18 +202,25 @@ $( document ).ready(function() {
     } // End of function game()
     
     function endGame () {
-        console.log("time ran out")
-    };
+        // Just confirming in the console if the time ran out rather than the user pressing the button
+        if (remainingTime === 0) {console.log("time ran out")};
+        // Remove the game objects from the DOM and only show end game results
+        $("#timerDisplay").html("");
+        $("#questionSection").html("");
+        // This stops the game timer from continuing 
+        endGameStatus = true;
+
+        //Tally up correct answers
+            //Display to the screen
+        
+        //Tally up incorrect answers
+            //Display to the screen
+
+        //Tally up unanswered questions
+            //Display to the screen
+
+    }; // End of function endGame()
     
-    // To allow the plaYer to select answers, each question should have bubbles to click to choose his/her answer
-        // Only one answer per question
+
     
-    // To make the game challenging, the player is limited by the remaining time
-        // To show the player's results, automatically reveal their scores after the timer ends
-        // Let them know in a message that the game ended
-        // Provide the statistics
-            // Correct Answers
-            // Incorrect Answers
-            // Unanswered questions
-    
-    });
+    }); // End of the $(document).ready function()
