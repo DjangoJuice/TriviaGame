@@ -136,7 +136,14 @@ $( document ).ready(function() {
         // Add the trivia questions
         var question1 = $("<p>");
         question1.attr("id", "question1");
-        question1.text(triviaQuestions.question1)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[0].toUpperCase() + "</h3>").append(question1.text(triviaQuestions.question1));
+        var ques1Choices = $("<form>");
+        ques1Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[0]);
+        Object.values(trivQuesAnswers1).forEach(function(choice) {
+            ques1Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question1").append(ques1Choices);
+        
     
         var question2 = $("<p>");
         question2.attr("id", "question2");
@@ -174,7 +181,7 @@ $( document ).ready(function() {
         question10.attr("id", "question10");
         question10.text(triviaQuestions.question10)
 
-    
+    /*
     // All the questions & choices should programmatically display for the player
         //Pull each one from the object of Trivia Questions
         Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
@@ -183,7 +190,7 @@ $( document ).ready(function() {
             quesChoices.attr("id", "choices-" + trivQuesKey);
             // Display the radio buttons with answers directly below the question
                 // Only allow the player to choose one answer per question
-            Object.values(trivQuesAnswers1).forEach(function(choice) {
+            Object.values(eval(trivQuesAnswers + 1)).forEach(function(choice) {
                 quesChoices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
             });
             // Display each Trivia Question to the DOM for the player to see
@@ -191,7 +198,7 @@ $( document ).ready(function() {
             // Match the answers to the corresponding question
             $("#" + trivQuesKey).append(quesChoices)
         });
-    
+    */
     
     
     // Create a button for finishing the game to allow players to finish early
@@ -226,4 +233,4 @@ $( document ).ready(function() {
     
 
     
-    }); // End of the $(document).ready function()
+}); // End of the $(document).ready function()
