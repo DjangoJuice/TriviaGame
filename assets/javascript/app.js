@@ -110,6 +110,8 @@ $( document ).ready(function() {
     
         var answeredFalse = 10;
 
+        var numOfQuestions = Object.keys(triviaQuestions).length;
+
 
     
     // Hide the start button from the screen
@@ -212,6 +214,7 @@ $( document ).ready(function() {
 
         //Tally up correct answers
             //Display to the screen
+        console.log()
         
         //Tally up incorrect answers
             //Display to the screen
