@@ -88,7 +88,6 @@ var trivQuesAnswers10 = {
     "answer4":"ansmwer4",
 }
 
-
 function game () {
 // Tracking the correct, incorrect and unanswered questions to show the player at end game
     var answeredCorrect = 0;
@@ -103,7 +102,7 @@ function game () {
 
 
 // Make a giant title display at the header of the page
-    $("#triviaTitle").html("<h1>Super Duper Trivia Game</h1>");
+    $("#triviaTitle").html("<h1>Super Trivia Game</h1>");
 
 
 // When the game starts, question(s) will appear, and the timer should begin
@@ -128,12 +127,17 @@ function game () {
     question1.text(triviaQuestions.question1)
 
     var ques1Choices = $("<form>");
-    //ques1Choices.attr("id", "ques1Choices");
-    // Object.values(trivQuesAnswers1).forEach(function(choice) {
-    //     ques1Choices.append(`<input type="radio" name="choice" value="` + choice + `"> ` + choice)
-    // });
-    console.log(Object.values(trivQuesAnswers1))
-    console.log(ques1Choices)
+    ques1Choices.attr("id", "ques1Choices");
+    Object.values(trivQuesAnswers1).forEach(function(choice) {
+        ques1Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice)
+        //ques1Choices.html(`<input type="radio" name="choice" value="` + choice + `">` + choice)
+     });
+     
+
+    //ques1Choices.html('<input type="radio" name="choice" value="meatball">Meatball')
+    //`<input type="radio" name="choice" value="` + choice + `">` + choice
+    // console.log(Object.values(trivQuesAnswers1))
+    // console.log(ques1Choices)
 
     var question2 = $("<p>");
     question2.attr("id", "question2");
@@ -171,10 +175,33 @@ function game () {
     question10.attr("id", "question10");
     question10.text(triviaQuestions.question10)
 
+    //$("#triviaTitle").append(ques1Choices)
+
 
 Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
-    $("#questionSection").append(eval(trivQuesKey))
-})
+    console.log('trivQuesKey', trivQuesKey)
+    console.log('ques 1 choices ', ques1Choices)
+    $("#questionSection").append(eval(trivQuesKey));
+    $("#question" + (Object.keys(triviaQuestions).indexOf(trivQuesKey) + 1)).append(ques1Choices)
+});
+
+
+// Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
+//     $("#questionSection").append(eval(trivQuesKey));
+//     $("#questionSection").append("<p>Test</p>")
+// })
+
+// Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
+//     $("#questionSection").append(eval(trivQuesKey));
+//     for (b = 1; b <= 10; b++) {
+//         $("#question" + b).append("<p>Test</p>")
+//     }
+// });
+
+// Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
+//     $("#questionSection").append(eval(trivQuesKey));
+//         $("#question" + (Object.keys(triviaQuestions).indexOf(trivQuesKey) + 1)).append("<p>Test</p>")
+// });
 
 
 
