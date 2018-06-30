@@ -5,16 +5,16 @@ $( document ).ready(function() {
     
     // This object's format makes it easy to display to the screen
     var triviaQuestions = {
-        "question1":"To live is to suffer, to survive is to find some meaning in the suffering.",
-        "question2":"This is Question 2",
-        "question3":"This is Question 3",
-        "question4":"This is Question 4",
-        "question5":"This is Question 5",
-        "question6":"This is Question 6",
-        "question7":"This is Question 7",
-        "question8":"This is Question 8",
-        "question9":"This is Question 9",
-        "question10":"This is Question 10",
+        "quote1":"To live is to suffer, to survive is to find some meaning in the suffering.",
+        "quote2":"I do not pilfer victory.",
+        "quote3":"You have to be able to accept failure to get better.",
+        "quote4":"Try not to become a man of success, but rather try to become a man of value.",
+        "quote5":"There is no great genius without some touch of madness.",
+        "quote6":"In the end, we will remember not the words of our enemies, but the silence of our friends.",
+        "quote7":"If you're afraid - don't do it, - if you're doing it - don't be afraid!",
+        "quote8":"Sometimes life hits you in the head with a brick. Don't lose faith.",
+        "quote9":"Education is the most powerful weapon which you can use to change the world.",
+        "quote10":"Give me six hours to chop down a tree and I will spend the first four sharpening the axe.",
     }
     
     // Multiple choice selections should be objects for adding to the DOM
@@ -26,66 +26,66 @@ $( document ).ready(function() {
     }
     
     var trivQuesAnswers2 = {
-        "answer1":"Q2 A1",
-        "answer2":"Q2 A2",
-        "answer3":"Q2 A3",
-        "answer4":"Q2 A4",
+        "answer1":"LeBron James",
+        "answer2":"Alexander the Great",
+        "answer3":"Michael Jordan",
+        "answer4":"Genghis Khan",
     }
     
     var trivQuesAnswers3 = {
-        "answer1":"Q3 A1",
-        "answer2":"Q3 A2",
-        "answer3":"Q3 A3",
-        "answer4":"Q3 A4",
+        "answer1":"Michael Jordan",
+        "answer2":"Kobe Bryant",
+        "answer3":"LeBron James",
+        "answer4":"Larry Bird",
     }
     
     var trivQuesAnswers4 = {
-        "answer1":"Q4 A1",
-        "answer2":"Q4 A2",
-        "answer3":"Q4 A3",
-        "answer4":"Q4 A4",
+        "answer1":"Bill Gates",
+        "answer2":"Albert Einstein",
+        "answer3":"Martin Luther King Jr",
+        "answer4":"George Washington",
     }
     
     var trivQuesAnswers5 = {
-        "answer1":"Q5 A1",
-        "answer2":"Q5 A2",
-        "answer3":"Q5 A3",
-        "answer4":"Q5 A4",
+        "answer1":"Albert Einstein",
+        "answer2":"Bill Nye",
+        "answer3":"Galileo",
+        "answer4":"Aristotle",
     }
     
     var trivQuesAnswers6 = {
-        "answer1":"Q6 A1",
-        "answer2":"Q6 A2",
-        "answer3":"Q6 A3",
-        "answer4":"Q6 A4",
+        "answer1":"Abraham Lincoln",
+        "answer2":"Tupac Shakur",
+        "answer3":"Martin Luther King Jr",
+        "answer4":"Harry S. Truman",
     }
     
     var trivQuesAnswers7 = {
-        "answer1":"Q7 A1",
-        "answer2":"Q7 A2",
-        "answer3":"Q7 A3",
-        "answer4":"Q7 A4",
+        "answer1":"Genghis Khan",
+        "answer2":"Steve Jobs",
+        "answer3":"Michael Jackson",
+        "answer4":"Abraham Lincoln",
     }
     
     var trivQuesAnswers8 = {
-        "answer1":"Q8 A1",
-        "answer2":"Q8 A2",
-        "answer3":"Q8 A3",
-        "answer4":"Q8 A4",
+        "answer1":"Steve Jobs",
+        "answer2":"Bill Gates",
+        "answer3":"LeBron James",
+        "answer4":"Bill Nye",
     }
     
     var trivQuesAnswers9 = {
-        "answer1":"Q9 A1",
-        "answer2":"Q9 A2",
-        "answer3":"Q9 A3",
-        "answer4":"Q9 A4",
+        "answer1":"Bill Gates",
+        "answer2":"Barack Obama",
+        "answer3":"Nelson Mandela",
+        "answer4":"Galileo",
     }
     
     var trivQuesAnswers10 = {
-        "answer1":"Q10 A1",
-        "answer2":"Q10 A2",
-        "answer3":"Q10 A3",
-        "answer4":"Q10 A4",
+        "answer1":"Albert Einstein",
+        "answer2":"Aristotle",
+        "answer3":"Arnold Schwarzenegger",
+        "answer4":"Abraham Lincoln",
     }
 
 
@@ -136,7 +136,7 @@ $( document ).ready(function() {
         // Add the trivia questions
         var question1 = $("<p>");
         question1.attr("id", "question1");
-        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[0].toUpperCase() + "</h3>").append(question1.text(triviaQuestions.question1));
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[0].toUpperCase() + "</h3>").append(question1.text(triviaQuestions.quote1));
         var ques1Choices = $("<form>");
         ques1Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[0]);
         Object.values(trivQuesAnswers1).forEach(function(choice) {
@@ -147,39 +147,102 @@ $( document ).ready(function() {
     
         var question2 = $("<p>");
         question2.attr("id", "question2");
-        question2.text(triviaQuestions.question2)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[1].toUpperCase() + "</h3>").append(question2.text(triviaQuestions.quote2));
+        var ques2Choices = $("<form>");
+        ques2Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[1]);
+        Object.values(trivQuesAnswers2).forEach(function(choice) {
+            ques2Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question2").append(ques2Choices);
+
     
         var question3 = $("<p>");
         question3.attr("id", "question3");
-        question3.text(triviaQuestions.question3)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[2].toUpperCase() + "</h3>").append(question3.text(triviaQuestions.quote3));
+        var ques3Choices = $("<form>");
+        ques3Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[2]);
+        Object.values(trivQuesAnswers3).forEach(function(choice) {
+            ques3Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question3").append(ques3Choices);
+
     
         var question4 = $("<p>");
         question4.attr("id", "question4");
-        question4.text(triviaQuestions.question4)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[3].toUpperCase() + "</h3>").append(question4.text(triviaQuestions.quote4));
+        var ques4Choices = $("<form>");
+        ques4Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[3]);
+        Object.values(trivQuesAnswers4).forEach(function(choice) {
+            ques4Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question4").append(ques4Choices);
+
     
         var question5 = $("<p>");
         question5.attr("id", "question5");
-        question5.text(triviaQuestions.question5)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[4].toUpperCase() + "</h3>").append(question5.text(triviaQuestions.quote5));
+        var ques5Choices = $("<form>");
+        ques5Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[4]);
+        Object.values(trivQuesAnswers5).forEach(function(choice) {
+            ques5Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question5").append(ques5Choices);
+
     
         var question6 = $("<p>");
         question6.attr("id", "question6");
-        question6.text(triviaQuestions.question6)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[5].toUpperCase() + "</h3>").append(question6.text(triviaQuestions.quote6));
+        var ques6Choices = $("<form>");
+        ques6Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[5]);
+        Object.values(trivQuesAnswers6).forEach(function(choice) {
+            ques6Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question6").append(ques6Choices);
+
     
         var question7 = $("<p>");
         question7.attr("id", "question7");
-        question7.text(triviaQuestions.question7)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[6].toUpperCase() + "</h3>").append(question7.text(triviaQuestions.quote7));
+        var ques7Choices = $("<form>");
+        ques7Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[6]);
+        Object.values(trivQuesAnswers7).forEach(function(choice) {
+            ques7Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question7").append(ques7Choices);
+
     
         var question8 = $("<p>");
         question8.attr("id", "question8");
-        question8.text(triviaQuestions.question8)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[7].toUpperCase() + "</h3>").append(question8.text(triviaQuestions.quote8));
+        var ques8Choices = $("<form>");
+        ques8Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[7]);
+        Object.values(trivQuesAnswers8).forEach(function(choice) {
+            ques8Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question8").append(ques8Choices);
+
     
         var question9 = $("<p>");
         question9.attr("id", "question9");
-        question9.text(triviaQuestions.question9)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[8].toUpperCase() + "</h3>").append(question9.text(triviaQuestions.quote9));
+        var ques9Choices = $("<form>");
+        ques9Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[8]);
+        Object.values(trivQuesAnswers9).forEach(function(choice) {
+            ques9Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question9").append(ques9Choices);
+
     
         var question10 = $("<p>");
         question10.attr("id", "question10");
-        question10.text(triviaQuestions.question10)
+        $("#questionSection").append("<h3>" + Object.keys(triviaQuestions)[9].toUpperCase() + "</h3>").append(question10.text(triviaQuestions.quote10));
+        var ques10Choices = $("<form>");
+        ques10Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[9]);
+        Object.values(trivQuesAnswers10).forEach(function(choice) {
+            ques10Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+        });
+        $("#question10").append(ques10Choices);
+        
 
     /*
     // All the questions & choices should programmatically display for the player
