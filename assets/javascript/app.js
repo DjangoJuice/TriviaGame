@@ -244,25 +244,6 @@ $( document ).ready(function() {
         $("#question10").append(ques10Choices);
         
 
-    /*
-    // All the questions & choices should programmatically display for the player
-        //Pull each one from the object of Trivia Questions
-        Object.keys(triviaQuestions).forEach(function(trivQuesKey) {
-        // Build the HTML form for the radio buttons and each one should have unique ID assigned
-            var quesChoices = $("<form>");
-            quesChoices.attr("id", "choices-" + trivQuesKey);
-            // Display the radio buttons with answers directly below the question
-                // Only allow the player to choose one answer per question
-            Object.values(eval(trivQuesAnswers + 1)).forEach(function(choice) {
-                quesChoices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
-            });
-            // Display each Trivia Question to the DOM for the player to see
-            $("#questionSection").append(eval(trivQuesKey));
-            // Match the answers to the corresponding question
-            $("#" + trivQuesKey).append(quesChoices)
-        });
-    */
-    
     
     // Create a button for finishing the game to allow players to finish early
         var doneButton = $("<button>");
