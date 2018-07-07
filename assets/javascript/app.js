@@ -110,6 +110,9 @@ $( document ).ready(function() {
     
         var answeredFalse = 10;
 
+        // The players answers from game() need to be stored for tallying in the endgame()
+        var playerAnswers = [];
+
         var numOfQuestions = Object.keys(triviaQuestions).length;
 
 
@@ -140,7 +143,7 @@ $( document ).ready(function() {
         var ques1Choices = $("<form>");
         ques1Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[0]);
         Object.values(trivQuesAnswers1).forEach(function(choice) {
-            ques1Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques1Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers1).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question1").append(ques1Choices);
         
@@ -151,7 +154,7 @@ $( document ).ready(function() {
         var ques2Choices = $("<form>");
         ques2Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[1]);
         Object.values(trivQuesAnswers2).forEach(function(choice) {
-            ques2Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques2Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers2).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question2").append(ques2Choices);
 
@@ -162,7 +165,7 @@ $( document ).ready(function() {
         var ques3Choices = $("<form>");
         ques3Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[2]);
         Object.values(trivQuesAnswers3).forEach(function(choice) {
-            ques3Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques3Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers3).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question3").append(ques3Choices);
 
@@ -173,7 +176,7 @@ $( document ).ready(function() {
         var ques4Choices = $("<form>");
         ques4Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[3]);
         Object.values(trivQuesAnswers4).forEach(function(choice) {
-            ques4Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques4Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers4).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question4").append(ques4Choices);
 
@@ -184,7 +187,7 @@ $( document ).ready(function() {
         var ques5Choices = $("<form>");
         ques5Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[4]);
         Object.values(trivQuesAnswers5).forEach(function(choice) {
-            ques5Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques5Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers5).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question5").append(ques5Choices);
 
@@ -195,7 +198,7 @@ $( document ).ready(function() {
         var ques6Choices = $("<form>");
         ques6Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[5]);
         Object.values(trivQuesAnswers6).forEach(function(choice) {
-            ques6Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques6Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers6).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question6").append(ques6Choices);
 
@@ -206,7 +209,7 @@ $( document ).ready(function() {
         var ques7Choices = $("<form>");
         ques7Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[6]);
         Object.values(trivQuesAnswers7).forEach(function(choice) {
-            ques7Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques7Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers7).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question7").append(ques7Choices);
 
@@ -217,7 +220,7 @@ $( document ).ready(function() {
         var ques8Choices = $("<form>");
         ques8Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[7]);
         Object.values(trivQuesAnswers8).forEach(function(choice) {
-            ques8Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques8Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers8).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question8").append(ques8Choices);
 
@@ -228,7 +231,7 @@ $( document ).ready(function() {
         var ques9Choices = $("<form>");
         ques9Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[8]);
         Object.values(trivQuesAnswers9).forEach(function(choice) {
-            ques9Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques9Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers9).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question9").append(ques9Choices);
 
@@ -239,7 +242,7 @@ $( document ).ready(function() {
         var ques10Choices = $("<form>");
         ques10Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[9]);
         Object.values(trivQuesAnswers10).forEach(function(choice) {
-            ques10Choices.append(`<input type="radio" name="choice" value="` + choice + `">` + choice);
+            ques10Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers10).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
         });
         $("#question10").append(ques10Choices);
         
@@ -249,8 +252,10 @@ $( document ).ready(function() {
         var doneButton = $("<button>");
         doneButton.text("Done");
         doneButton.attr("id", "doneButton");
-        $("#pageFooter").append(doneButton)
-        $("#doneButton").on("click", endGame)
+        $("#pageFooter").append(doneButton);
+        $("#doneButton").on("click", endGame);
+        
+        console.log()
 
     } // End of function game()
     
@@ -265,7 +270,7 @@ $( document ).ready(function() {
 
         //Tally up correct answers
             //Display to the screen
-        console.log()
+        console.log(playerAnswers)
         
         //Tally up incorrect answers
             //Display to the screen
