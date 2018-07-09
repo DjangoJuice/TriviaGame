@@ -1,6 +1,48 @@
 // The game should not start automatically, we want the player starting the game with a Start Button
 $( document ).ready(function() {
-    $("#startButton").on("click", game)
+
+
+    // $(document).on('click', '.choices', function(event)  {
+    //     // 1.) check which question this goes with
+    //     console.log(event.target);
+    //     console.log("User Answer ", $("input[name=question1-choices]:checked").val());
+    //         if ($("input[name=question1-choices]:checked").val() === "Friedrich Nietzsche") {
+    //             console.log("Nice")}
+    //             else {
+    //                 console.log("Try again")
+    //             }
+            
+        // 2.) actually grab the value of the input with jQuery
+
+        // 3.) compare with correct answer
+
+        //if (correct) {
+            //great add points
+        //} else {
+            // remove tally, count against player
+        //}
+
+        // end function, proceed with next check/click
+    //})
+
+
+    $("#startButton").on("click", game);
+
+
+    // on click for an answer in 1, i assign a 
+    answerObj = {
+        1: "Friedrich Nietzsche",
+        2: "Alexander the Great", 
+        3: "LeBron James",
+        4: "Albert Einstein",
+        5: "Aristotle",
+        6: "Martin Luther King Jr",
+        7: "Genghis Khan",
+        8: "Steve Jobs",
+        9: "Nelson Mandela",
+        10: "Abraham Lincoln"
+    };
+
     
     
     // This object's format makes it easy to display to the screen
@@ -15,7 +57,13 @@ $( document ).ready(function() {
         "quote8":"Sometimes life hits you in the head with a brick. Don't lose faith.",
         "quote9":"Education is the most powerful weapon which you can use to change the world.",
         "quote10":"Give me six hours to chop down a tree and I will spend the first four sharpening the axe.",
-    }
+    };
+
+    // to access dynamically, you use a variable like so:
+    // answer[quote]
+    // var answers = {
+    //     "quote1": "answer1" 
+    // }
     
     // Multiple choice selections should be objects for adding to the DOM
     var trivQuesAnswers1 = {
@@ -23,73 +71,95 @@ $( document ).ready(function() {
         "answer2":"Aristotle",
         "answer3":"Nelson Mandela",
         "answer4":"Alexander the Great",
-    }
+    };
     
     var trivQuesAnswers2 = {
         "answer1":"LeBron James",
         "answer2":"Alexander the Great",
         "answer3":"Michael Jordan",
         "answer4":"Genghis Khan",
-    }
+    };
     
     var trivQuesAnswers3 = {
         "answer1":"Michael Jordan",
         "answer2":"Kobe Bryant",
         "answer3":"LeBron James",
         "answer4":"Larry Bird",
-    }
+    };
     
     var trivQuesAnswers4 = {
         "answer1":"Bill Gates",
         "answer2":"Albert Einstein",
         "answer3":"Martin Luther King Jr",
         "answer4":"George Washington",
-    }
+    };
     
     var trivQuesAnswers5 = {
         "answer1":"Albert Einstein",
         "answer2":"Bill Nye",
         "answer3":"Galileo",
         "answer4":"Aristotle",
-    }
+    };
     
     var trivQuesAnswers6 = {
         "answer1":"Abraham Lincoln",
         "answer2":"Tupac Shakur",
         "answer3":"Martin Luther King Jr",
         "answer4":"Harry S. Truman",
-    }
+    };
     
     var trivQuesAnswers7 = {
         "answer1":"Genghis Khan",
         "answer2":"Steve Jobs",
         "answer3":"Michael Jackson",
         "answer4":"Abraham Lincoln",
-    }
+    };
     
     var trivQuesAnswers8 = {
         "answer1":"Steve Jobs",
         "answer2":"Bill Gates",
         "answer3":"LeBron James",
         "answer4":"Bill Nye",
-    }
+    };
     
     var trivQuesAnswers9 = {
         "answer1":"Bill Gates",
         "answer2":"Barack Obama",
         "answer3":"Nelson Mandela",
         "answer4":"Galileo",
-    }
+    };
     
     var trivQuesAnswers10 = {
         "answer1":"Albert Einstein",
         "answer2":"Aristotle",
         "answer3":"Arnold Schwarzenegger",
         "answer4":"Abraham Lincoln",
+    };
+
+    /*
+    {
+        question1: {
+            question: '.asdh;asdh;asd'
+            answers: {
+                1,
+                2, 
+                3,
+                4
+            },
+            correctAnswer: 1
+        }
+
     }
 
+    */
 
-    // Game state for ending the game, either by timer or button
+
+    
+    
+    
+    function game () {
+
+        // Game state for ending the game, either by timer or button
     var endGameStatus = false;
 
 
@@ -100,15 +170,13 @@ $( document ).ready(function() {
 
         // The game should last 2 minutes (120 seconds)
         var remainingTime = 120;
-    
-    
-    function game () {
+
     // Tracking the correct, incorrect and unanswered questions to show the player at end game
         var answeredCorrect = 0;
     
         var answeredIncorrect = 0;
     
-        var answeredFalse = 10;
+        var answerUndefined = 0;
 
         // The players answers from game() need to be stored for tallying in the endgame()
         var playerAnswers = [];
@@ -143,9 +211,15 @@ $( document ).ready(function() {
         var ques1Choices = $("<form>");
         ques1Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[0]);
         Object.values(trivQuesAnswers1).forEach(function(choice) {
-            ques1Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers1).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques1Choices.append(`<input type="radio" class="choices" id="question1-choice` + (Object.values(trivQuesAnswers1).indexOf(choice) + 1) + `" name="question1-choices" value="` + choice + `">` + choice);
         });
         $("#question1").append(ques1Choices);
+        // $("#choices-1 input").on("change", function () {
+        //     console.log($("input[name=choice1]:checked", "#choices-1").val());
+            //https://stackoverflow.com/questions/596351/how-can-i-know-which-radio-button-is-selected-via-jquery#596369
+            //https://stackoverflow.com/questions/8622336/jquery-get-value-of-selected-radio-button#23053203
+        //})
+
         
     
         var question2 = $("<p>");
@@ -154,7 +228,7 @@ $( document ).ready(function() {
         var ques2Choices = $("<form>");
         ques2Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[1]);
         Object.values(trivQuesAnswers2).forEach(function(choice) {
-            ques2Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers2).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques2Choices.append(`<input type="radio" class="choices" id="question2-choice` + (Object.values(trivQuesAnswers2).indexOf(choice) + 1) + `" name="question2-choices" value="` + choice + `">` + choice);
         });
         $("#question2").append(ques2Choices);
 
@@ -165,7 +239,7 @@ $( document ).ready(function() {
         var ques3Choices = $("<form>");
         ques3Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[2]);
         Object.values(trivQuesAnswers3).forEach(function(choice) {
-            ques3Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers3).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques3Choices.append(`<input type="radio" class="choices" id="question3-choice` + (Object.values(trivQuesAnswers3).indexOf(choice) + 1) + `" name="question3-choices" value="` + choice + `">` + choice);
         });
         $("#question3").append(ques3Choices);
 
@@ -176,7 +250,7 @@ $( document ).ready(function() {
         var ques4Choices = $("<form>");
         ques4Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[3]);
         Object.values(trivQuesAnswers4).forEach(function(choice) {
-            ques4Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers4).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques4Choices.append(`<input type="radio" class="choices" id="question4-choice` + (Object.values(trivQuesAnswers4).indexOf(choice) + 1) + `" name="question4-choices" value="` + choice + `">` + choice);
         });
         $("#question4").append(ques4Choices);
 
@@ -187,7 +261,7 @@ $( document ).ready(function() {
         var ques5Choices = $("<form>");
         ques5Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[4]);
         Object.values(trivQuesAnswers5).forEach(function(choice) {
-            ques5Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers5).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques5Choices.append(`<input type="radio" class="choices" id="question5-choice` + (Object.values(trivQuesAnswers5).indexOf(choice) + 1) + `" name="question5-choices" value="` + choice + `">` + choice);
         });
         $("#question5").append(ques5Choices);
 
@@ -198,7 +272,7 @@ $( document ).ready(function() {
         var ques6Choices = $("<form>");
         ques6Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[5]);
         Object.values(trivQuesAnswers6).forEach(function(choice) {
-            ques6Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers6).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques6Choices.append(`<input type="radio" class="choices" id="question6-choice` + (Object.values(trivQuesAnswers6).indexOf(choice) + 1) + `" name="question6-choices" value="` + choice + `">` + choice);
         });
         $("#question6").append(ques6Choices);
 
@@ -209,7 +283,7 @@ $( document ).ready(function() {
         var ques7Choices = $("<form>");
         ques7Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[6]);
         Object.values(trivQuesAnswers7).forEach(function(choice) {
-            ques7Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers7).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques7Choices.append(`<input type="radio" class="choices" id="question7-choice` + (Object.values(trivQuesAnswers7).indexOf(choice) + 1) + `" name="question7-choices" value="` + choice + `">` + choice);
         });
         $("#question7").append(ques7Choices);
 
@@ -220,7 +294,7 @@ $( document ).ready(function() {
         var ques8Choices = $("<form>");
         ques8Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[7]);
         Object.values(trivQuesAnswers8).forEach(function(choice) {
-            ques8Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers8).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques8Choices.append(`<input type="radio" class="choices" id="question8-choice` + (Object.values(trivQuesAnswers8).indexOf(choice) + 1) + `" name="question8-choices" value="` + choice + `">` + choice);
         });
         $("#question8").append(ques8Choices);
 
@@ -231,7 +305,7 @@ $( document ).ready(function() {
         var ques9Choices = $("<form>");
         ques9Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[8]);
         Object.values(trivQuesAnswers9).forEach(function(choice) {
-            ques9Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers9).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques9Choices.append(`<input type="radio" class="choices" id="question9-choice` + (Object.values(trivQuesAnswers9).indexOf(choice) + 1) + `" name="question9-choices" value="` + choice + `">` + choice);
         });
         $("#question9").append(ques9Choices);
 
@@ -242,7 +316,7 @@ $( document ).ready(function() {
         var ques10Choices = $("<form>");
         ques10Choices.attr("id", "choices-" + Object.keys(triviaQuestions)[9]);
         Object.values(trivQuesAnswers10).forEach(function(choice) {
-            ques10Choices.append(`<input type="radio" name="choice` + (Object.values(trivQuesAnswers10).indexOf(choice) + 1) + `" value="` + choice + `">` + choice);
+            ques10Choices.append(`<input type="radio" class="choices" id="question10-choice` + (Object.values(trivQuesAnswers10).indexOf(choice) + 1) + `" name="question10-choices" value="` + choice + `">` + choice);
         });
         $("#question10").append(ques10Choices);
         
@@ -255,30 +329,54 @@ $( document ).ready(function() {
         $("#pageFooter").append(doneButton);
         $("#doneButton").on("click", endGame);
         
-        console.log()
+        //console.log()
 
-    } // End of function game()
+        function endGame () {
+            // Just confirming in the console if the time ran out rather than the user pressing the button
+            if (remainingTime === 0) {console.log("time ran out")};
+
+
+            // Remove the game objects from the DOM and only show end game results
+            $("#timerDisplay").html("");
+            $("#questionSection").attr("class", "hidden");
+
+
+            // This stops the game timer from continuing 
+            endGameStatus = true;
+            clearTimeout(gameTimeout);
+
+            
+
+            // Populate the player's choices to compare to correct answers and tally scores    
+            for (i=1; i <= 10; i++) {
+                playerAnswers.push($("input[name=question" + i + "-choices]:checked").val())
+            };
+            
+
+            for (a=0; a < Object.values(answerObj).length; a++) {
+                // Record the player's scores to display them on screen
+                if (Object.values(answerObj)[a] === playerAnswers[a]) {
+                    //Tally up correct answers
+                    answeredCorrect++;
+                }
+                else if (playerAnswers[a] === undefined) {
+                    //Tally up unanswered questions
+                    answerUndefined++
+                }
+                else {
+                    //Tally up incorrect answers
+                    answeredIncorrect++
+                }
+            };
+            
+            //Confirm if the scores tally and the player's choices record into an array
+            console.log("player's answers array: ", playerAnswers);
+            console.log("Correct-", answeredCorrect, " Incorrect-", answeredIncorrect, " Undefined=", answerUndefined);
+
     
-    function endGame () {
-        // Just confirming in the console if the time ran out rather than the user pressing the button
-        if (remainingTime === 0) {console.log("time ran out")};
-        // Remove the game objects from the DOM and only show end game results
-        $("#timerDisplay").html("");
-        $("#questionSection").html("");
-        // This stops the game timer from continuing 
-        endGameStatus = true;
+        }; // End of function endGame()
 
-        //Tally up correct answers
-            //Display to the screen
-        console.log(playerAnswers)
-        
-        //Tally up incorrect answers
-            //Display to the screen
-
-        //Tally up unanswered questions
-            //Display to the screen
-
-    }; // End of function endGame()
+    }; // End of function game()
     
 
     
