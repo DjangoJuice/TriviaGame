@@ -2,30 +2,6 @@
 $( document ).ready(function() {
 
 
-    // $(document).on('click', '.choices', function(event)  {
-    //     // 1.) check which question this goes with
-    //     console.log(event.target);
-    //     console.log("User Answer ", $("input[name=question1-choices]:checked").val());
-    //         if ($("input[name=question1-choices]:checked").val() === "Friedrich Nietzsche") {
-    //             console.log("Nice")}
-    //             else {
-    //                 console.log("Try again")
-    //             }
-            
-        // 2.) actually grab the value of the input with jQuery
-
-        // 3.) compare with correct answer
-
-        //if (correct) {
-            //great add points
-        //} else {
-            // remove tally, count against player
-        //}
-
-        // end function, proceed with next check/click
-    //})
-
-
     $("#startButton").on("click", game);
 
 
@@ -59,12 +35,7 @@ $( document ).ready(function() {
         "quote10":"Give me six hours to chop down a tree and I will spend the first four sharpening the axe.",
     };
 
-    // to access dynamically, you use a variable like so:
-    // answer[quote]
-    // var answers = {
-    //     "quote1": "answer1" 
-    // }
-    
+   
     // Multiple choice selections should be objects for adding to the DOM
     var trivQuesAnswers1 = {
         "answer1":"Friedrich Nietzsche",
@@ -136,22 +107,6 @@ $( document ).ready(function() {
         "answer4":"Abraham Lincoln",
     };
 
-    /*
-    {
-        question1: {
-            question: '.asdh;asdh;asd'
-            answers: {
-                1,
-                2, 
-                3,
-                4
-            },
-            correctAnswer: 1
-        }
-
-    }
-
-    */
 
     // Hide the end game section
     $("#postGame").attr("class", "hidden")
