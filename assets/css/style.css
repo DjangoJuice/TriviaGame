@@ -16,6 +16,57 @@ body {
     color: white;
 }
 
+body div#triviaTitle {
+    font-family: 'Rock Salt', cursive;
+    font-size: 8rem;
+}
+
+#timerDisplay {
+    height: 5rem;
+}
+
+body button#startButton {
+    position: fixed;
+    top: 10rem;
+    right: 50%;
+}
+
+.btn-lg {
+    width: 10rem;
+    height: 5rem;
+}
+
+button#doneButton {
+    position: fixed;
+    left: 5rem;
+    top: 20rem;
+}
+
+body p {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5rem;
+}
+
+body p form {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+body div#endGameResults {
+    background-image: url("../images/scroll1.jpg");
+    max-width: 600px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body div#endGameResults p {
+    font-family: cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: center;
+    padding-top: 5rem;
+}
 
 #questionSection {
     width: 800px;
@@ -26,6 +77,11 @@ body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+form input {
+    margin-left: 1rem;
+    margin-right: .2rem;
 }
 
 body section.hidden {

@@ -153,7 +153,8 @@ $( document ).ready(function() {
 
     */
 
-
+    // Hide the end game section
+    $("#postGame").attr("class", "hidden")
     
     
     
@@ -324,8 +325,7 @@ $( document ).ready(function() {
     
     // Create a button for finishing the game to allow players to finish early
         var doneButton = $("<button>");
-        doneButton.text("Done");
-        doneButton.attr("id", "doneButton");
+        doneButton.text("Done").attr("id", "doneButton").attr("class", "btn btn-outline-light btn-lg");
         $("#pageFooter").append(doneButton);
         $("#doneButton").on("click", endGame);
         
@@ -345,6 +345,9 @@ $( document ).ready(function() {
             endGameStatus = true;
             clearTimeout(gameTimeout);
 
+
+            // Hide the end game section
+            $("#postGame").attr("class", "")
             
 
             // Populate the player's choices to compare to correct answers and tally scores    
@@ -356,18 +359,24 @@ $( document ).ready(function() {
             for (a=0; a < Object.values(answerObj).length; a++) {
                 // Record the player's scores to display them on screen
                 if (Object.values(answerObj)[a] === playerAnswers[a]) {
-                    //Tally up correct answers
+                    // Tally up correct answers
                     answeredCorrect++;
                 }
                 else if (playerAnswers[a] === undefined) {
-                    //Tally up unanswered questions
+                    // Tally up unanswered questions
                     answerUndefined++
                 }
                 else {
-                    //Tally up incorrect answers
+                    // Tally up incorrect answers
                     answeredIncorrect++
                 }
             };
+
+
+            // Display the player's results to the screen after the game ends
+            $("#endGameResults").append("<p> Correct answers: " + answeredCorrect + "</p>");
+            $("#endGameResults").append("<p> Incorrect answers: " + answeredIncorrect + "</p>");
+            $("#endGameResults").append("<p> Unanswered: " + answerUndefined + "</p>");
             
             //Confirm if the scores tally and the player's choices record into an array
             console.log("player's answers array: ", playerAnswers);
